@@ -71,6 +71,12 @@ apt-get -y install nfs-common
 
 echo 'Добро пожаловать в виртуальную машину Debian testing by Yuri Nazarenko / Rezident' > /var/run/motd
 
+echo "Зануление свободного места на диске для лучшей упаковки образа"
+dd if=/dev/zero of=/EMPTY bs=1M
+rm -f /EMPTY
+
 echo "Работа окончена! Для упаковки базового образа используйте команду"
 echo "vagrant package --base имя-этой-машины"
 echo
+
+exit
