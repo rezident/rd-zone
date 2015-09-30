@@ -36,3 +36,21 @@ if [ `grep 'UseDNS no' /etc/ssh/sshd_config | wc -l` = 0 ]
 		echo "UseDNS -> no в конфиг ssh демона"
 		echo 'UseDNS no' >> /etc/ssh/sshd_config
 fi
+
+echo "Настраиваем загрузчик GRUB"
+cat <<EOF > /etc/default/grub
+# If you change this file, run 'update-grub' afterwards to update
+# /boot/grub/grub.cfg.
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=0
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+EOF
+update-grub
+
+
+echo "Работа окончена! Для упаковки базового образа используйте команду"
+echo "vagrant package --base имя-этой-машины"
+echo
