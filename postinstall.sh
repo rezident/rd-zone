@@ -50,6 +50,11 @@ GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
 EOF
 update-grub
 
+echo "Установка ключа для авторизации для пользователя vagrant"
+mkdir -pm 700 /home/vagrant/.ssh
+wget https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
+hmod 0600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
 
 echo "Работа окончена! Для упаковки базового образа используйте команду"
 echo "vagrant package --base имя-этой-машины"
