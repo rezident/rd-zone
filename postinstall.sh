@@ -17,3 +17,4 @@ apt-get autoremove -y
 echo "Установка sudo и добавление пользователя vagrant к группе sudo"
 apt-get install sudo -y
 adduser vagrant sudo
+echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant
