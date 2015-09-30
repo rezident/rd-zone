@@ -19,6 +19,16 @@ apt-get install sudo -y
 adduser vagrant sudo
 echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant
 
+echo "Установка гостевых дополнений VirtualBox"
+mount /dev/cdrom /media/cdrom
+if [ `ls -la /media/cdrom | wc -l` = 3 ]
+	then
+		echo "Необходимо подключить образ диска Дополнений гостевой ОС"
+		exit
+fi
+apt-get install build-essential module-assistant
+m-a prepare
+sh /media/cdrom/VBoxLinuxAdditions.run
 
 if [ `grep 'UseDNS no' /etc/ssh/sshd_config | wc -l` = 0 ]
 	then
