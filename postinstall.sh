@@ -13,3 +13,7 @@ apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get autoremove -y
+
+echo "Установка sudo и добавление пользователя vagrant к группе sudo"
+apt-get install sudo -y
+adduser vagrant sudo
