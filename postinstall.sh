@@ -28,7 +28,8 @@ if [ `ls -la /media/cdrom/ | wc -l` = 3 ]
 fi
 apt-get install build-essential module-assistant -y
 m-a prepare
-sh /media/cdrom/VBoxLinuxAdditions.run
+yes|sh /media/cdrom/VBoxLinuxAdditions.run -y
+umount /media/cdrom
 
 if [ `grep 'UseDNS no' /etc/ssh/sshd_config | wc -l` = 0 ]
 	then
