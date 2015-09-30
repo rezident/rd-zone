@@ -21,7 +21,7 @@ echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant
 
 echo "Установка гостевых дополнений VirtualBox"
 mount /dev/cdrom /media/cdrom
-if [ `ls -la /media/cdrom | wc -l` = 3 ]
+if [ `ls -la /media/cdrom/ | wc -l` = 3 ]
 	then
 		echo "Необходимо подключить образ диска Дополнений гостевой ОС"
 		exit
