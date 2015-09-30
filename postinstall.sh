@@ -62,12 +62,14 @@ EOF
 
 echo "Установка ключа для авторизации для пользователя vagrant"
 mkdir -pm 700 /home/vagrant/.ssh
-wget https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
+wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
 echo "Установка NFS"
 apt-get -y install nfs-common
+
+echo 'Добро пожаловать в виртуальную машину Debian testing by Yuri Nazarenko / Rezident' > /var/run/motd
 
 echo "Работа окончена! Для упаковки базового образа используйте команду"
 echo "vagrant package --base имя-этой-машины"
