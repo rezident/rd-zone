@@ -50,6 +50,16 @@ GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
 EOF
 update-grub
 
+cat <<EOF > /etc/network/interfaces
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+allow-hotplug eth0
+iface eth0 inet dhcp
+EOF
+
 echo "Установка ключа для авторизации для пользователя vagrant"
 mkdir -pm 700 /home/vagrant/.ssh
 wget https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
