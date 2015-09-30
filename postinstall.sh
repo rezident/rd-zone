@@ -18,3 +18,10 @@ echo "Установка sudo и добавление пользователя v
 apt-get install sudo -y
 adduser vagrant sudo
 echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant
+
+
+if [ `grep 'UseDNS no' /etc/ssh/sshd_config | wc -l` = 0 ]
+	then
+		echo "UseDNS -> no в конфиг ssh демона"
+		echo 'UseDNS no' >> /etc/ssh/sshd_config
+fi
