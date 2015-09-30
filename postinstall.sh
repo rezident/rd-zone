@@ -26,9 +26,9 @@ if [ `ls -la /media/cdrom/ | wc -l` = 3 ]
 		echo "Необходимо подключить образ диска Дополнений гостевой ОС"
 		exit
 fi
-apt-get install build-essential module-assistant -y
+apt-get install build-essential module-assistant linux-headers-$(uname -r) -y
 m-a prepare
-yes|sh /media/cdrom/VBoxLinuxAdditions.run -y
+yes|sh /media/cdrom/VBoxLinuxAdditions.run
 umount /media/cdrom
 
 if [ `grep 'UseDNS no' /etc/ssh/sshd_config | wc -l` = 0 ]
