@@ -78,13 +78,13 @@ apt-get -y clean
 
 echo "Установка алиасов командной строки"
 LS_ALIAS="alias l='ls -lah --color=auto'"
-if [ `grep "$LS_ALIAS" /home/yuri/.bashrc | wc -l` = 0 ]
+if [ `grep "$LS_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $LS_ALIAS >> /home/vagrant/.bashrc
 fi
 
 GREP_ALIAS="alias grep='grep --color=auto'"
-if [ `grep "$GREP_ALIAS" /home/yuri/.bashrc | wc -l` = 0 ]
+if [ `grep "$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $GREP_ALIAS >> /home/vagrant/.bashrc
 fi
