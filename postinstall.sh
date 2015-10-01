@@ -26,6 +26,7 @@ if [ `ls -la /media/cdrom/ | wc -l` = 3 ]
 		echo "Необходимо подключить образ диска Дополнений гостевой ОС"
 		exit
 fi
+
 apt-get install build-essential module-assistant linux-headers-$(uname -r) -y
 m-a prepare
 yes|sh /media/cdrom/VBoxLinuxAdditions.run
@@ -70,6 +71,11 @@ echo "Установка NFS"
 apt-get -y install nfs-common
 
 echo 'Добро пожаловать в виртуальную машину Debian testing by Yuri Nazarenko / Rezident' > /var/run/motd
+
+echo "Удаление больше не нужных программ"
+apt-get -y remove linux-headers-$(uname -r) build-essential git module-assistant
+apt-get -y autoremove
+apt-get -y clean
 
 echo "Зануление свободного места на диске для лучшей упаковки образа"
 dd if=/dev/zero of=/EMPTY bs=1M
