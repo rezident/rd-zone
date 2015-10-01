@@ -3,6 +3,7 @@ echo "Добро пожаловать в скрипт постустановки
 echo "© Yuri Nazarenko / Rezident / https://github.com/rezident1307/rd-zone"
 echo
 
+
 if [ $USER != root ]
 	then
 		echo "Возможно запустить только из под суперпользователя"
@@ -70,12 +71,23 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 echo "Установка NFS"
 apt-get -y install nfs-common
 
-echo 'Добро пожаловать в виртуальную машину Debian testing by Yuri Nazarenko / Rezident' > /var/run/motd
-
 echo "Удаление больше не нужных программ"
 apt-get -y remove linux-headers-$(uname -r) build-essential git module-assistant
 apt-get -y autoremove
 apt-get -y clean
+
+echo "Установка алиасов командной строки"
+LS_ALIAS="alias l='ls -lah --color=auto'"
+if [ `grep "$LS_ALIAS" /home/yuri/.bashrc | wc -l` = 0 ]
+	then
+		echo $LS_ALIAS >> /home/yuri/.bashrc
+fi
+
+GREP_ALIAS="alias grep='grep --color=auto'"
+if [ `grep "$GREP_ALIAS" /home/yuri/.bashrc | wc -l` = 0 ]
+	then
+		echo $GREP_ALIAS >> /home/yuri/.bashrc
+fi
 
 echo "Зануление свободного места на диске для лучшей упаковки образа"
 dd if=/dev/zero of=/EMPTY bs=1M
