@@ -89,6 +89,12 @@ if [ `grep "$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 		echo $GREP_ALIAS >> /home/vagrant/.bashrc
 fi
 
+PROVISION_RUN="`pwd`/rebuild_provision.sh"
+if [ `grep "$PROVISION_RUN" /home/vagrant/.bashrc | wc -l` = 0 ]
+	then
+		echo $PROVISION_RUN >> /home/vagrant/.bashrc
+fi
+
 echo "Зануление свободного места на диске для лучшей упаковки образа"
 dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
