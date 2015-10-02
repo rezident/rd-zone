@@ -41,7 +41,7 @@ do
 	LINE=$(grep "$FILE_NAME" $VAGRANT_FILE)
 	if [ "$LINE" = "" ]
 		then
-			LINE="    # "$FILE_NAME
+			LINE="    # ./"$FILE_NAME
 	fi
 	echo "$LINE" >> $VAGRANT_FILE_TMP
 done
@@ -52,6 +52,11 @@ if [ "$LINE" = "" ]
 		LINE="  # "$PROVISION_LAST_LINE
 fi
 echo "$LINE" >> $VAGRANT_FILE_TMP
+
+if [ `grep "BASH_ENV=/etc/profile exec bash" $VAGRANT_FILE_TMP | wc -l` = 0 ]
+	then
+		echo "config.ssh.shell = \"bash -c 'BASH_ENV=/etc/profile exec bash'\"" >> $VAGRANT_FILE_TMP
+fi
 
 echo "end" >> $VAGRANT_FILE_TMP
 
