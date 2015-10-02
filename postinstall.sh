@@ -92,10 +92,10 @@ fi
 PROVISION_RUN="`pwd`/rebuild-provision.sh"
 if [ `grep "^$PROVISION_RUN" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
-		echo "CURRENT_DIR=\`pwd\`" >> /home/vagrant/.bashrc
-		echo "sudo cd `pwd`" >> /home/vagrant/.bashrc
-		echo "sudo "$PROVISION_RUN >> /home/vagrant/.bashrc
-		echo "cd \$CURRENT_DIR" >> /home/vagrant/.bashrc
+		echo "sudo su -c \"cd `pwd`;$PROVISION_RUN\"" >> /home/vagrant/.bashrc
+#		echo "cd `pwd`" >> /home/vagrant/.bashrc
+#		echo $PROVISION_RUN >> /home/vagrant/.bashrc
+#		echo "exit" >> /home/vagrant/.bashrc
 fi
 
 echo "Зануление свободного места на диске для лучшей упаковки образа"
