@@ -28,7 +28,12 @@ if [ "$LINE" = "" ]
 fi
 echo "$LINE" >> $VAGRANT_FILE_TMP
 
-echo "    cd `pwd`/.provision/" >> $VAGRANT_FILE_TMP
+LINE=$(grep "cd `pwd`/.provision/" $VAGRANT_FILE)
+if [ "$LINE" = "" ]
+	then
+		LINE="    # cd `pwd`/.provision/"
+fi
+echo "$LINE" >> $VAGRANT_FILE_TMP
 
 for file in $PROVISION_PATH*.sh
 do
