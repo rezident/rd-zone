@@ -10,14 +10,6 @@ if [ $USER != root ]
 		exit
 fi
 
-PROVISION_RUN="`pwd`/rebuild-provision.sh"
-if [ `grep "$PROVISION_RUN" /home/vagrant/.bashrc | wc -l` = 0 ]
-	then
-		echo $PROVISION_RUN >> /home/vagrant/.bashrc
-fi
-
-exit
-
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -86,15 +78,24 @@ apt-get -y clean
 
 echo "Установка алиасов командной строки"
 LS_ALIAS="alias l='ls -lah --color=auto'"
-if [ `grep "$LS_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
+if [ `grep "^$LS_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $LS_ALIAS >> /home/vagrant/.bashrc
 fi
 
 GREP_ALIAS="alias grep='grep --color=auto'"
-if [ `grep "$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
+if [ `grep "^$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $GREP_ALIAS >> /home/vagrant/.bashrc
+fi
+
+PROVISION_RUN="`pwd`/rebuild-provision.sh"
+if [ `grep "^$PROVISION_RUN" /home/vagrant/.bashrc | wc -l` = 0 ]
+	then
+		echo "CURRENT_DIR=\`pwd\`" >> /home/vagrant/.bashrc
+		echo "sudo cd `pwd`" >> /home/vagrant/.bashrc
+		echo "sudo "$PROVISION_RUN >> /home/vagrant/.bashrc
+		echo "cd \$CURRENT_DIR" >> /home/vagrant/.bashrc
 fi
 
 echo "Зануление свободного места на диске для лучшей упаковки образа"
