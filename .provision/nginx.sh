@@ -2,7 +2,7 @@
 apt-get install nginx -y
 mkdir -p /vagrant/.provision-data/nginx/
 
-sed -i 's/user www\-user;/user vagrant;/g' /etc/nginx/nginx.conf
+sed -i 's/user www-data;/user vagrant;/g' /etc/nginx/nginx.conf
 if [ ! -f /vagrant/nginx.conf ]
 	then
 		cp nginx.conf /vagrant
