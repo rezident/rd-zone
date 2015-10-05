@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 apt-get install nginx -y
+mkdir -p /vagrant/.provision-data/nginx/
+
 sed -i 's/user www\-user;/user vagrant;/g' /etc/nginx/nginx.conf
 if [ ! -f /vagrant/nginx.conf ]
 	then
