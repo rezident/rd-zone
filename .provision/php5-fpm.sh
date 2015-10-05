@@ -3,6 +3,9 @@ apt-get install php5-fpm -y
 
 sed -i 's/^user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf
 sed -i 's/^group = www-data/group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+sed -i 's/^listen.owner = www-data/listen.owner = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+sed -i 's/^listen.group = www-data/listen.group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+
 
 if [ ! -f /vagrant/php.ini ]
 	then
