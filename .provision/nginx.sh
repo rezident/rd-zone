@@ -9,3 +9,4 @@ if [ `grep "^include /vagrant/nginx.conf" /etc/nginx/nginx.conf | wc -l` = 0 ]
 	then
 		echo "include /vagrant/nginx.conf" >> /etc/nginx/nginx.conf
 fi
+/etc/init.d/nginx restart
