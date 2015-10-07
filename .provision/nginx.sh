@@ -9,8 +9,10 @@ if [ "$1" = "" ]
 			cp nginx.conf /vagrant
 	fi
 	rm -f /etc/nginx/sites-enabled/default
-	echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
-	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh \$#" > /etc/incron.d/nginx
+	ln -fs /vagrant/nginx.conf /etc/nginx/sites-enabled/vagrant.conf
+#	echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
+#	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh \$#" > /etc/incron.d/nginx
+	echo "/etc/nginx/sites-enabled/vagrant.conf IN_MODIFY /etc/init.d/nginx reload" > /etc/incron.d/nginx
 	/etc/init.d/nginx restart
 
 	else
