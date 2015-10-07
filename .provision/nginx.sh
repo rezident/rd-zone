@@ -10,7 +10,7 @@ if [ "$1" = "" ]
 	fi
 	rm -f /etc/nginx/sites-enabled/default
 	echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
-	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh $#" > /etc/incron.d/nginx
+	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh \$#" > /etc/incron.d/nginx
 	/etc/init.d/nginx restart
 
 	else
