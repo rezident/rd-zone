@@ -12,11 +12,12 @@ if [ "$1" = "" ]
 	ln -fs /vagrant/nginx.conf /etc/nginx/sites-enabled/vagrant.conf
 #	echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
 #	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh \$#" > /etc/incron.d/nginx
-	echo "/etc/nginx/sites-enabled/vagrant.conf IN_MODIFY /etc/init.d/nginx reload" > /etc/incron.d/nginx
+	echo "/etc/nginx/sites-enabled IN_CLOSE_WRITE `pwd`/nginx.sh \$#" > /etc/incron.d/nginx
 	/etc/init.d/nginx restart
 
 	else
-	if [ "$1" = "nginx.conf" ]
+#	if [ "$1" = "nginx.conf" ]
+	if [ "$1" = "vagrant.conf" ]
 		then
 		/etc/init.d/nginx reload
 	fi
