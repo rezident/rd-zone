@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ '$1' = '' ]
+if [ "$1" = "" ]
 	then
 	apt-get install incron nginx -y
 
@@ -14,7 +14,7 @@ if [ '$1' = '' ]
 	/etc/init.d/nginx restart
 
 	else
-	if [ '$1' = 'nginx.conf' ]
+	if [ "$1" = "nginx.conf" ]
 		then
 		/etc/init.d/nginx reload
 	fi
