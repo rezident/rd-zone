@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
-apt-get install nginx -y
-mkdir -p /vagrant/.provision-data/nginx/
-
-sed -i 's/user www-data;/user vagrant;/g' /etc/nginx/nginx.conf
-if [ ! -f /vagrant/nginx.conf ]
+if [ '$1' = '' ]
 	then
-		cp nginx.conf /vagrant
-fi
-rm -f /etc/nginx/sites-enabled/default
-echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
+	apt-get install incron nginx -y
 
-/etc/init.d/nginx restart
+	sed -i 's/user www-data;/user vagrant;/g' /etc/nginx/nginx.conf
+	if [ ! -f /vagrant/nginx.conf ]
+		then
+			cp nginx.conf /vagrant
+	fi
+	rm -f /etc/nginx/sites-enabled/default
+	echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
+	echo "/vagrant IN_CLOSE_WRITE,IN_NO_LOOP `pwd`/nginx.sh $#" > /etc/incron.d/nginx
+	/etc/init.d/nginx restart
+
+	else
+	if [ $1 = nginx.conf ]
+		then
+		/etc/init.d/nginx reload
+	fi
+fi
