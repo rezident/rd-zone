@@ -15,7 +15,7 @@ ln -sf /vagrant/php.ini /etc/php5/fpm/conf.d/vagrant.ini
 
 if [ `grep "/etc/init.d/php5-fpm restart" /root/autorun.sh | wc -l` = 0 ]
 	then
-	echo "/etc/init.d/php5-fpm restart" > /root/autorun.sh
+	echo "/etc/init.d/php5-fpm restart" >> /root/autorun.sh
 fi
 
 /etc/init.d/php5-fpm restart

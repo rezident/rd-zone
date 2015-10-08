@@ -11,7 +11,7 @@ echo "include /vagrant/nginx.conf;" > /etc/nginx/sites-enabled/vagrant.conf
 
 if [ `grep "/etc/init.d/nginx restart" /root/autorun.sh | wc -l` = 0 ]
 	then
-	echo "/etc/init.d/nginx restart" > /root/autorun.sh
+	echo "/etc/init.d/nginx restart" >> /root/autorun.sh
 fi
 
 /etc/init.d/nginx restart
