@@ -89,10 +89,33 @@ if [ `grep "^$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 		echo $GREP_ALIAS >> /home/vagrant/.bashrc
 fi
 
-PROVISION_RUN="`pwd`/rebuild-provision.sh"
-if [ `grep "^$PROVISION_RUN" /home/vagrant/.bashrc | wc -l` = 0 ]
+echo "Создание файла автозапуска"
+if [ `grep "/root/autorun.sh" /etc/rc.local | wc -l` = 0 ]
 	then
-		echo "sudo su -c \"cd `pwd`;$PROVISION_RUN\"" >> /home/vagrant/.bashrc
+	sed -i '/^exit 0$/d' /etc/rc.local
+	cat <<EOF >> /etc/rc.local
+if [ -f /root/autorun.sh ]
+	then
+	while [ ! -f /vagrant/Vagrantfile ]
+		do
+		sleep 1
+	done
+	/root/autorun.sh
+fi
+exit 0
+EOF
+fi
+
+if [ ! -f /root/autorun.sh ]
+	then
+	touch /root/autorun.sh
+	chmod 744 /root/autorun.sh
+fi
+
+PROVISION_RUN="`pwd`/rebuild-provision.sh"
+if [ `grep "^$PROVISION_RUN" /root/autorun.sh | wc -l` = 0 ]
+	then
+		echo "sudo su -c \"cd `pwd`;$PROVISION_RUN\"" >> /root/autorun.sh
 fi
 
 echo "Зануление свободного места на диске для лучшей упаковки образа"
