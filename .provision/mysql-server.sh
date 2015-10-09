@@ -10,7 +10,7 @@ mkdir -p /vagrant/.provision
 mv /var/lib/mysql /vagrant/.provision
 
 sed -i 's/= mysql$/= root/g' /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i 's/= \/var\/lib\/mysql$/= /vagrant\/.provision\/mysql/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+sed -i 's/= \/var\/lib\/mysql$/= \/vagrant\/.provision\/mysql/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 sed -i 's/^User=mysql$/User=root/g' /lib/systemd/system/mysql.service
 sed -i 's/^Group=mysql$/Group=root/g' /lib/systemd/system/mysql.service
 
