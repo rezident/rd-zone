@@ -68,9 +68,6 @@ wget --no-check-certificate https://raw.github.com/mitchellh/vagrant/master/keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
-echo "Установка NFS"
-apt-get -y install nfs-common
-
 echo "Удаление больше не нужных программ"
 apt-get -y remove linux-headers-$(uname -r) build-essential git module-assistant
 apt-get -y autoremove
