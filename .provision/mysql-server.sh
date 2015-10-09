@@ -24,4 +24,10 @@ if [ `grep "/etc/init.d/mysql restart" /root/autorun.sh | wc -l` = 0 ]
 	echo "/etc/init.d/mysql restart" >> /root/autorun.sh
 fi
 
+cat <<EOF > /home/vagrant/.my.cnf
+[client]
+user=root
+password=vagrant
+EOF
+
 /etc/init.d/mysql start
