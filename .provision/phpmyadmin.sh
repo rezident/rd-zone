@@ -22,7 +22,8 @@ apt-get install phpmyadmin -y
 
 ln -sf `pwd`/phpmyadmin.nginx.conf /etc/nginx/sites-enabled/phpmyadmin.conf
 
-if [ `grep "^\$cfg\['Servers'\]\[\$i\]\['auth_type'\] = 'config';" /etc/phpmyadmin/config.inc.php | wc -l` = 0 ]
+AUTO_AUTH="\$cfg\['Servers'\]\[\$i\]\['auth_type'\] = 'config'";
+if [ `grep "^$AUTO_AUTH" /etc/phpmyadmin/config.inc.php | wc -l` = 0 ]
     then
     echo "\$cfg['Servers'][\$i]['auth_type'] = 'config';" >> /etc/phpmyadmin/config.inc.php
     echo "\$cfg['Servers'][\$i]['user'] = 'root';" >> /etc/phpmyadmin/config.inc.php
