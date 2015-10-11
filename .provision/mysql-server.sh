@@ -29,5 +29,6 @@ cat <<EOF > /home/vagrant/.my.cnf
 user=root
 password=vagrant
 EOF
+chown vagrant:vagrant /home/vagrant/.my.cnf
 
 /etc/init.d/mysql start
