@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+if [ -f /etc/init.d/mysql ]
+	then exit 0
+fi
 
 echo "mysql-server mysql-server/root_password password vagrant" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password vagrant" | debconf-set-selections

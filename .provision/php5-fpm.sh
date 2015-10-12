@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+if [ -f /etc/init.d/php5-fpm ]
+	then exit 0
+fi
+
 apt-get install php5-fpm -y
 
 sed -i 's/^user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf

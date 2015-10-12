@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
+if [ -f /etc/nginx/sites-enabled/phpmyadmin.conf ]
+	then exit 0
+fi
 
 if [ ! -f /etc/init.d/mysql ]
-    then mysql-server.sh
+    then ./mysql-server.sh
 fi
 
 if [ ! -f /etc/init.d/nginx ]
-    then nginx.sh
+    then ./nginx.sh
 fi
 
 if [ ! -f /etc/init.d/php5-fpm ]
-    then php5-fpm.sh
+    then ./php5-fpm.sh
 fi
 
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect" | debconf-set-selections

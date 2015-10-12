@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+if [ -f /etc/init.d/nginx ]
+	then exit 0
+fi
+
 apt-get install nginx -y
 
 sed -i 's/user www-data;/user vagrant;/g' /etc/nginx/nginx.conf
