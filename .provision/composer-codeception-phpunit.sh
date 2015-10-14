@@ -2,8 +2,15 @@
 cat <<EOF >> /home/vagrant/composer-codeception-phpunit-install.sh
 #!/usr/bin/env bash
 if [ -f /bin/codecept ]
+    then
+    echo "Уже все установлено"
+	exit 0
+fi
+
+if [ ! -f /bin/composer ]
+    then
     echo "Необходимо установить composer"
-	then exit 0
+    exit 1
 fi
 
 composer global require "codeception/codeception"
