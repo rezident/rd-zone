@@ -12,7 +12,7 @@ apt-get install mysql-server -y
 mkdir -p /vagrant/.provision
 if [ ! -d /vagrant/.provision/mysql ]
 	then
-	mv /var/lib/mysql /vagrant/.provision
+	cp -r /var/lib/mysql /vagrant/.provision
 fi
 
 sed -i 's/= mysql$/= root/g' /etc/mysql/mysql.conf.d/mysqld.cnf
