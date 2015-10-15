@@ -115,6 +115,8 @@ if [ `grep "^$PROVISION_RUN" /root/autorun.sh | wc -l` = 0 ]
 		echo "sudo su -c \"cd `pwd`;$PROVISION_RUN\"" >> /root/autorun.sh
 fi
 
+ln -sf /vagrant /home/vagrant/project
+
 echo "Зануление свободного места на диске для лучшей упаковки образа"
 dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
