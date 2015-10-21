@@ -3,4 +3,4 @@ if [ -f /usr/bin/gem ]
 	then exit 0
 fi
 
-apt-get install ruby ruby-dev
+apt-get install ruby ruby-dev -y
