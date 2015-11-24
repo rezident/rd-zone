@@ -16,6 +16,7 @@ if [ ! -d /vagrant/.provision/mysql ]
 fi
 
 sed -i 's/= mysql$/= root/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+sed -i 's/= 127.0.0.1$/= 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 sed -i 's/= \/var\/lib\/mysql$/= \/vagrant\/.provision\/mysql/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 sed -i 's/^User=mysql$/User=root/g' /lib/systemd/system/mysql.service
 sed -i 's/^Group=mysql$/Group=root/g' /lib/systemd/system/mysql.service
@@ -35,3 +36,5 @@ EOF
 chown vagrant:vagrant /home/vagrant/.my.cnf
 
 /etc/init.d/mysql start
+
+mysql -e 'GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "vagrant" WITH GRANT OPTION;'
