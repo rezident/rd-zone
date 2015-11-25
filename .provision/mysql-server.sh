@@ -35,6 +35,13 @@ password=vagrant
 EOF
 chown vagrant:vagrant /home/vagrant/.my.cnf
 
+cat <<EOF > /root/.my.cnf
+[client]
+user=root
+password=vagrant
+EOF
+chown root:root /root/.my.cnf
+
 /etc/init.d/mysql start
 
 mysql -e 'GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "vagrant" WITH GRANT OPTION;'
