@@ -15,13 +15,9 @@ if [ ! -d /vagrant/.provision/mysql ]
 	cp -r /var/lib/mysql /vagrant/.provision
 fi
 
-sed -i 's/= mysql$/= root/g' /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i 's/= 127.0.0.1$/= 0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i 's/= \/var\/lib\/mysql$/= \/vagrant\/.provision\/mysql/g' /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i 's/^User=mysql$/User=root/g' /lib/systemd/system/mysql.service
-sed -i 's/^Group=mysql$/Group=root/g' /lib/systemd/system/mysql.service
-
-systemctl daemon-reload
+sed -i 's/= mysql$/= root/g' /etc/mysql/my.cnf
+sed -i 's/= 127.0.0.1$/= 0.0.0.0/g' /etc/mysql/my.cnf
+sed -i 's/= \/var\/lib\/mysql$/= \/vagrant\/.provision\/mysql/g' /etc/mysql/my.cnf
 
 if [ `grep "/etc/init.d/mysql restart" /root/autorun.sh | wc -l` = 0 ]
 	then
