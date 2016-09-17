@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "Добро пожаловать в скрипт постустановки системы Debian testing для Vagrant!"
-echo "© Yuri Nazarenko / Rezident / https://github.com/rezident1307/rd-zone"
+echo "© Yuri Nazarenko / Rezident / https://github.com/rezident/rd-zone"
 echo
 
 
@@ -69,7 +69,7 @@ chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
 echo "Удаление больше не нужных программ"
-apt-get -y remove linux-headers-$(uname -r) build-essential git module-assistant
+apt-get -y remove linux-headers-$(uname -r) build-essential module-assistant
 apt-get -y autoremove
 apt-get -y clean
 
