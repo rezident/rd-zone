@@ -28,7 +28,7 @@ if [ `ls -la /media/cdrom/ | wc -l` = 3 ]
 		exit
 fi
 
-apt-get install build-essential module-assistant linux-headers-$(uname -r) -y
+apt-get install build-essential module-assistant linux-headers-$(uname -r) mc -y
 m-a prepare
 yes|sh /media/cdrom/VBoxLinuxAdditions.run
 umount /media/cdrom
@@ -79,11 +79,19 @@ if [ `grep "^$LS_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $LS_ALIAS >> /home/vagrant/.bashrc
 fi
+if [ `grep "^$LS_ALIAS" /root/.bashrc | wc -l` = 0 ]
+	then
+		echo $LS_ALIAS >> /root/.bashrc
+fi
 
 GREP_ALIAS="alias grep='grep --color=auto'"
 if [ `grep "^$GREP_ALIAS" /home/vagrant/.bashrc | wc -l` = 0 ]
 	then
 		echo $GREP_ALIAS >> /home/vagrant/.bashrc
+fi
+if [ `grep "^$GREP_ALIAS" /root/.bashrc | wc -l` = 0 ]
+	then
+		echo $GREP_ALIAS >> /root/.bashrc
 fi
 
 echo "Создание файла автозапуска"
