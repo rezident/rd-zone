@@ -11,8 +11,8 @@ if [ ! -f /etc/init.d/nginx ]
     then ./nginx.sh
 fi
 
-if [ ! -f /etc/init.d/php5-fpm ]
-    then ./php5-fpm.sh
+if [ ! -f /etc/init.d/php7.0-fpm ]
+    then ./php7.0-fpm.sh
 fi
 
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect" | debconf-set-selections
