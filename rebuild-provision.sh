@@ -38,7 +38,7 @@ echo "$LINE" >> $VAGRANT_FILE_TMP
 for file in $PROVISION_PATH*.sh
 do
 	FILE_NAME=`basename $file`
-	LINE=$(grep "$FILE_NAME" $VAGRANT_FILE)
+	LINE=$(grep -m 1 "$FILE_NAME" $VAGRANT_FILE)
 	if [ "$LINE" = "" ]
 		then
 			LINE="    # ./"$FILE_NAME
